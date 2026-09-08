@@ -1,5 +1,6 @@
 package com.sparta.team.member.entity;
 
+import com.sparta.team.team.entity.Team;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +15,20 @@ public class Member {
     private Long Id;
     private String name;
 
-    public Member(String name) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
+
+    public Member(String name, Team team) {
         this.name = name;
+        this.team = team;
+    }
+
+    public void changeName(String newName){
+        this.name = newName;
+    }
+
+    public void changeTeam(Team newTeam){
+        this.team = newTeam;
     }
 }

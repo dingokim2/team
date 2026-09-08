@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class TeamController {
-    private TeamService teamService;
+    private final TeamService teamService;
 
     @PostMapping("/teams")
     public ResponseEntity<TeamCreateResponse> save(
