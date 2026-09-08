@@ -4,6 +4,7 @@ import com.sparta.team.team.dto.TeamCreateRequest;
 import com.sparta.team.team.dto.TeamCreateResponse;
 import com.sparta.team.team.dto.TeamGetResponse;
 import com.sparta.team.team.entity.Team;
+import com.sparta.team.team.exception.TeamNotFoundException;
 import com.sparta.team.team.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class TeamService {
     @Transactional(readOnly = true)
     public TeamGetResponse getOne(Long teamId) {
         Team team = teamRepository.findById(teamId).orElseThrow(
-                () -> new IllegalStateException("없는 팀입니다.")
+                () -> new TeamNotFoundException("없는 팀입니다.")
                 );
         return new TeamGetResponse(team.getId(), team.getName());
     }
