@@ -11,4 +11,5 @@ public class MemberCreateResponse {
         this.id = id;
         this.name = name;
     }
+
 }
